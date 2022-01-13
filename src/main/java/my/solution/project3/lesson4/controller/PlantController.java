@@ -23,7 +23,7 @@ import my.solution.project3.lesson4.service.PlantService;
 @RequestMapping("/plant")
 public class PlantController {
 
-    private static final Logger logger = LoggerFactory.getLogger(DeliveryController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlantController.class);
 
     @Autowired
     private PlantService plantService;
