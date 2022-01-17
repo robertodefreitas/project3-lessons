@@ -32,9 +32,12 @@ public class Delivery {
 
     @Nationalized
     private String name;
+    
     @Column(name = "address_full", length = 500)
     private String address;
+
     private LocalDateTime deliveryTime; // includes both date and time - simpler than having two separate fields
+
     @Type(type = "yes_no")
     private Boolean completed;
 
