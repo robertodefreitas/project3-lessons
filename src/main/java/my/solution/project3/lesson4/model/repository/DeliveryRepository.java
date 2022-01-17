@@ -47,16 +47,33 @@ public class DeliveryRepository {
 
     // One possible way to solve this - query a list of Plants with deliveryId matching
     // the one provided and sum their prices.
+
+    /**
+     * MY-NOTE
+     * following Solution is important, if we use PostgreSQL DB (s. row below)
+     *
+     * ERROR:
+     * Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed;
+     * nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException:
+     * could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException:
+     * could not extract ResultSet] with root cause
+     *
+     * SOLUTION:
+     * .groupBy(root.get("delivery").get("name"))
+     */
     public RecipientAndPrice getBill(Long deliveryId) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<RecipientAndPrice> query = cb.createQuery(RecipientAndPrice.class);
         Root<Plant> root = query.from(Plant.class);
+
         query.select(
-                cb.construct(
-                        RecipientAndPrice.class,
-                        root.get("delivery").get("name"),
-                        cb.sum(root.get("price"))))
-                .where(cb.equal(root.get("delivery").get("id"), deliveryId));
+            cb.construct(
+                RecipientAndPrice.class,
+                root.get("delivery").get("name"),
+                cb.sum(root.get("price"))))
+        .where(cb.equal(root.get("delivery").get("id"), deliveryId))
+        .groupBy(root.get("delivery").get("name"));
+
         return entityManager.createQuery(query).getSingleResult();
     }
 }
