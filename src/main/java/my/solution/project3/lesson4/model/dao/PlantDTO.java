@@ -1,4 +1,4 @@
-package my.solution.project3.lesson4.model.dto;
+package my.solution.project3.lesson4.model.dao;
 
 import java.math.BigDecimal;
 

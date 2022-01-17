@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import my.solution.project3.lesson4.model.Plant;
-import my.solution.project3.lesson4.model.dto.PlantDTO;
+import my.solution.project3.lesson4.model.dao.PlantDTO;
 import my.solution.project3.lesson4.model.Views;
 import my.solution.project3.lesson4.service.PlantService;
 
