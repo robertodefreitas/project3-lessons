@@ -32,7 +32,7 @@ public class Delivery {
 
     @Nationalized
     private String name;
-    
+
     @Column(name = "address_full", length = 500)
     private String address;
 
